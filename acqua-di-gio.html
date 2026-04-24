@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Acqua Di Gio — The Essence of Nature</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0d0d0e;
+    --deep: #111318;
+    --surface: #16181f;
+    --card: #1c1f28;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-dim: rgba(201,168,76,0.18);
+    --cream: #f0ead8;
+    --muted: #7a7d88;
+    --border: rgba(201,168,76,0.2);
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0.5;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 500;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    background: linear-gradient(to bottom, rgba(13,13,14,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--gold-light);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; gap: 42px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    border: 1px solid var(--border);
+    padding: 10px 28px;
+    color: var(--gold) !important;
+    transition: background 0.3s, color 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--gold-dim) !important; color: var(--gold-light) !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(30,40,70,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      linear-gradient(135deg, #0a0c12 0%, #0d1020 40%, #090b10 100%);
+  }
+  .hero-orb {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%,
+      rgba(201,168,76,0.15) 0%,
+      rgba(100,130,200,0.1) 30%,
+      rgba(20,30,60,0.4) 65%,
+      transparent 100%);
+    box-shadow:
+      inset 0 0 80px rgba(201,168,76,0.08),
+      0 0 120px rgba(201,168,76,0.05),
+      inset -20px -20px 60px rgba(100,150,255,0.05);
+    animation: orb-float 7s ease-in-out infinite;
+  }
+  .hero-orb::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+  .hero-orb::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+    animation: orb-rotate 12s linear infinite;
+  }
+  @keyframes orb-float {
+    0%, 100% { transform: translateY(-50%) translateX(0) scale(1); }
+    50% { transform: translateY(-52%) translateX(-10px) scale(1.02); }
+  }
+  @keyframes orb-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    padding: 0 60px;
+    max-width: 660px;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+  }
+  .hero-desc {
+    font-size: 0.78rem;
+    line-height: 1.9;
+    color: rgba(240,234,216,0.55);
+    max-width: 420px;
+    letter-spacing: 0.08em;
+    margin-bottom: 52px;
+  }
+  .hero-actions {
+    display: flex; gap: 20px; align-items: center;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 14px 40px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border: none;
+    cursor: none;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    color: var(--cream);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.3s;
+    cursor: none;
+  }
+  .btn-ghost::after {
+    content: '→';
+    transition: transform 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost:hover::after { transform: translateX(5px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 48px; left: 60px;
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 14px;
+    writing-mode: vertical-rl;
+    animation: fadeIn 2s 1s ease both;
+  }
+  .hero-scroll::before {
+    content: '';
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    animation: scroll-line 2s ease-in-out infinite;
+  }
+  @keyframes scroll-line {
+    0% { height: 0; opacity: 0; }
+    50% { height: 48px; opacity: 1; }
+    100% { height: 48px; opacity: 0; }
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+  }
+  .stats-inner {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+  }
+  .stat-item {
+    flex: 1;
+    padding: 36px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    animation: fadeUp 0.8s ease both;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 120px 60px; }
+  .section-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-tag::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold); opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-desc {
+    font-size: 0.78rem;
+    line-height: 1.9;
+    color: rgba(240,234,216,0.5);
+    letter-spacing: 0.06em;
+    max-width: 480px;
+  }
+
+  /* PERFUMES SECTION */
+  #perfumes { background: var(--deep); }
+  .perfumes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 70px;
+  }
+  .perfumes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .perfume-card {
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    transition: transform 0.4s ease;
+  }
+  .perfume-card:hover { transform: translateY(-8px); }
+  .perfume-card:hover .perfume-overlay { opacity: 1; }
+  .perfume-card:hover .perfume-img-wrap::before { opacity: 1; }
+  .perfume-img-wrap {
+    aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .perfume-img-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .perfume-visual {
+    width: 100px; height: 200px;
+    position: relative;
+  }
+  /* SVG bottle shapes */
+  .bottle-svg {
+    width: 100%; height: 100%;
+  }
+  .perfume-info {
+    padding: 24px 22px 28px;
+    border-top: 1px solid var(--border);
+  }
+  .perfume-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .perfume-type {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .perfume-notes {
+    font-size: 0.68rem;
+    color: var(--muted);
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+  }
+  .perfume-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+  }
+  .perfume-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(13,13,14,0.5);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .perfume-overlay a {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 12px 30px;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+    cursor: none;
+  }
+  .perfume-overlay a:hover { background: var(--gold-light); }
+
+  /* SERVICES */
+  #services { background: var(--ink); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 70px;
+  }
+  .service-card {
+    background: var(--surface);
+    padding: 52px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transition: width 0.5s ease;
+  }
+  .service-card:hover { background: var(--card); }
+  .service-card:hover::before { width: 100%; }
+  .service-icon {
+    width: 48px; height: 48px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .service-icon-glyph {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .service-desc {
+    font-size: 0.72rem;
+    line-height: 1.9;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 30px;
+  }
+  .service-link {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: gap 0.3s;
+    cursor: none;
+  }
+  .service-link:hover { gap: 16px; }
+
+  /* ABOUT */
+  #about {
+    background: var(--deep);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 560px;
+  }
+  .about-bg-rect {
+    position: absolute;
+    top: 40px; left: 40px; right: -20px; bottom: -20px;
+    border: 1px solid var(--border);
+  }
+  .about-main-block {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1d26, #0f1018);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .about-main-block::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .about-glyph {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14rem;
+    font-style: italic;
+    color: rgba(201,168,76,0.04);
+    position: absolute;
+    font-weight: 600;
+    line-height: 1;
+    user-select: none;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px; right: 30px;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 18px 28px;
+    text-align: center;
+  }
+  .about-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    display: block;
+    line-height: 1;
+  }
+  .about-badge-text {
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  .about-content .section-desc { max-width: 100%; margin-bottom: 30px; }
+  .about-list {
+    list-style: none;
+    margin-top: 36px;
+  }
+  .about-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 16px;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    color: rgba(240,234,216,0.7);
+  }
+  .about-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* TEAM */
+  #team { background: var(--ink); }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 70px;
+  }
+  .team-card {
+    position: relative;
+    cursor: none;
+  }
+  .team-photo {
+    aspect-ratio: 3/4;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .team-photo-inner {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    color: rgba(201,168,76,0.15);
+  }
+  .team-photo-accent {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .team-card:hover .team-photo-accent { transform: scaleX(1); }
+  .team-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .team-role {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--deep); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 70px;
+  }
+  .testimonial-card {
+    background: var(--surface);
+    padding: 44px 36px;
+    position: relative;
+  }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 0.5;
+    margin-bottom: 24px;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(240,234,216,0.8);
+    margin-bottom: 28px;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .testimonial-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .testimonial-name {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+  .testimonial-loc {
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .stars {
+    color: var(--gold);
+    font-size: 0.75rem;
+    margin-bottom: 16px;
+    letter-spacing: 3px;
+  }
+
+  /* PRICING */
+  #pricing { background: var(--ink); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 70px;
+  }
+  .pricing-card {
+    background: var(--surface);
+    padding: 52px 40px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .pricing-card.featured {
+    background: var(--card);
+    border-top: 2px solid var(--gold);
+  }
+  .pricing-featured-tag {
+    position: absolute;
+    top: -1px; right: 36px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+  }
+  .pricing-tier {
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .pricing-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pricing-price sup {
+    font-size: 1.4rem;
+    vertical-align: super;
+    color: var(--gold);
+  }
+  .pricing-period {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 36px;
+  }
+  .pricing-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 30px;
+  }
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 42px;
+  }
+  .pricing-features li {
+    font-size: 0.72rem;
+    color: rgba(240,234,216,0.65);
+    padding: 9px 0;
+    display: flex; align-items: center; gap: 12px;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(201,168,76,0.06);
+  }
+  .pricing-features li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 0.5rem;
+    flex-shrink: 0;
+  }
+  .pricing-features li.muted { opacity: 0.3; }
+  .pricing-features li.muted::before { content: '—'; color: var(--muted); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--deep);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .contact-info .section-desc { max-width: 100%; margin-bottom: 50px; }
+  .contact-detail {
+    display: flex; flex-direction: column;
+    gap: 28px;
+  }
+  .contact-item {
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .contact-item-icon {
+    width: 42px; height: 42px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+  .contact-item-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .contact-item-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+  }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .form-input, .form-textarea, .form-select {
+    background: var(--card);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--cream);
+    padding: 14px 18px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    outline: none;
+    transition: border-color 0.3s;
+    cursor: none;
+    width: 100%;
+    appearance: none;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--gold);
+  }
+  .form-textarea { resize: vertical; min-height: 130px; }
+  .form-select option { background: var(--card); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid var(--border);
+    padding: 80px 60px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+  }
+  .footer-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--gold-light);
+    margin-bottom: 18px;
+  }
+  .footer-brand-desc {
+    font-size: 0.72rem;
+    line-height: 1.9;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 30px;
+  }
+  .social-links {
+    display: flex; gap: 14px;
+  }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    transition: border-color 0.3s, color 0.3s;
+    cursor: none;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col-title {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.3s;
+    cursor: none;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+  }
+  .footer-legal {
+    display: flex; gap: 30px;
+  }
+  .footer-legal a {
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    transition: color 0.3s;
+    cursor: none;
+  }
+  .footer-legal a:hover { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* NOTIFICATION TOAST */
+  .toast {
+    position: fixed;
+    bottom: 40px; right: 40px;
+    background: var(--surface);
+    border: 1px solid var(--gold);
+    color: var(--cream);
+    padding: 16px 28px;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    z-index: 900;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* MOBILE HINT */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero-content { padding: 0 24px; max-width: 100%; }
+    .hero-orb { width: 280px; height: 280px; right: -60px; opacity: 0.5; }
+    .hero-title { font-size: 3rem; }
+    .perfumes-grid, .services-grid, .team-grid, .testimonials-grid, .pricing-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    #about, #contact { grid-template-columns: 1fr; gap: 50px; padding: 80px 24px; }
+    .about-visual { height: 300px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .stats-inner { flex-wrap: wrap; }
+    .stat-item { min-width: 50%; border-bottom: 1px solid var(--border); }
+  }
+
+  /* ── CART DRAWER ── */
+  .cart-btn {
+    position: fixed; top: 30px; right: 60px;
+    z-index: 600;
+    background: transparent; border: none;
+    color: var(--cream); cursor: none;
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .cart-btn:hover { color: var(--gold); }
+  .cart-count {
+    background: var(--gold); color: var(--ink);
+    width: 20px; height: 20px; border-radius: 50%;
+    font-size: 0.6rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .cart-count.visible { transform: scale(1); }
+
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 700;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+    backdrop-filter: blur(4px);
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: 420px; max-width: 100vw;
+    background: var(--deep);
+    border-left: 1px solid var(--border);
+    z-index: 800;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+
+  .cart-header {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300;
+    color: var(--cream);
+  }
+  .cart-close {
+    background: none; border: none; color: var(--muted);
+    font-size: 1.4rem; cursor: none;
+    transition: color 0.3s; line-height: 1;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid transparent;
+  }
+  .cart-close:hover { color: var(--gold); border-color: var(--border); }
+
+  .cart-items {
+    flex: 1; overflow-y: auto; padding: 24px 32px;
+    scrollbar-width: thin; scrollbar-color: var(--gold-dim) transparent;
+  }
+  .cart-empty {
+    text-align: center; padding: 60px 0;
+    color: var(--muted); font-size: 0.78rem; letter-spacing: 0.1em;
+  }
+  .cart-empty-icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+
+  .cart-item {
+    display: flex; gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    animation: slideInRight 0.3s ease both;
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .cart-item-thumb {
+    width: 72px; height: 90px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: var(--cream); margin-bottom: 3px;
+  }
+  .cart-item-type { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 10px; }
+  .cart-item-controls { display: flex; align-items: center; gap: 12px; }
+  .qty-btn {
+    width: 28px; height: 28px; border: 1px solid var(--border);
+    background: none; color: var(--cream); cursor: none;
+    font-size: 1rem; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .qty-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .qty-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--cream); min-width: 20px; text-align: center;
+  }
+  .cart-item-remove {
+    background: none; border: none; color: var(--muted);
+    cursor: none; font-size: 0.8rem; letter-spacing: 0.1em;
+    transition: color 0.2s; margin-left: auto;
+    align-self: flex-start;
+  }
+  .cart-item-remove:hover { color: #e05555; }
+  .cart-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--gold-light);
+    align-self: center;
+  }
+
+  .cart-footer {
+    padding: 24px 32px 32px;
+    border-top: 1px solid var(--border);
+  }
+  .cart-subtotal {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .cart-subtotal-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+  .cart-subtotal-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--gold-light); }
+  .cart-checkout-btn {
+    width: 100%; background: var(--gold); color: var(--ink);
+    border: none; padding: 16px; cursor: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .cart-checkout-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ── PRODUCT MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 900; opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    max-width: 780px; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative;
+    transform: translateY(30px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    max-height: 90vh; overflow: hidden;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute; top: 18px; right: 18px;
+    background: none; border: 1px solid var(--border);
+    color: var(--muted); cursor: none; font-size: 1.1rem;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; z-index: 2;
+  }
+  .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+  .modal-visual {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 380px;
+  }
+  .modal-info { padding: 44px 40px; overflow-y: auto; }
+  .modal-type { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .modal-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--cream); margin-bottom: 6px; }
+  .modal-price { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 22px; }
+  .modal-desc { font-size: 0.74rem; line-height: 1.85; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .modal-notes-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .modal-notes-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .note-tag {
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    font-size: 0.62rem; letter-spacing: 0.15em; color: var(--cream);
+  }
+  .modal-size-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .modal-sizes { display: flex; gap: 8px; margin-bottom: 28px; }
+  .size-btn {
+    border: 1px solid var(--border); background: none; color: var(--muted);
+    padding: 8px 16px; font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.15em; cursor: none;
+    transition: all 0.2s;
+  }
+  .size-btn:hover, .size-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .modal-actions { display: flex; gap: 10px; }
+  .modal-add-btn {
+    flex: 1; background: var(--gold); color: var(--ink);
+    border: none; padding: 14px 20px; cursor: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .modal-add-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .wishlist-btn {
+    width: 50px; border: 1px solid var(--border); background: none;
+    color: var(--muted); cursor: none; font-size: 1.2rem;
+    transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+  }
+  .wishlist-btn:hover, .wishlist-btn.active { border-color: #e05555; color: #e05555; }
+
+  /* ── PRICING TOGGLE ── */
+  .pricing-toggle-wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 18px; margin-bottom: 50px;
+  }
+  .toggle-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); transition: color 0.3s; }
+  .toggle-label.active { color: var(--gold); }
+  .toggle-switch {
+    width: 52px; height: 28px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; cursor: none; position: relative;
+    transition: background 0.3s;
+  }
+  .toggle-switch.annual { background: var(--gold-dim); }
+  .toggle-knob {
+    position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gold);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .toggle-switch.annual .toggle-knob { transform: translateX(24px); }
+  .savings-badge {
+    font-size: 0.58rem; letter-spacing: 0.15em;
+    background: var(--gold-dim); color: var(--gold);
+    border: 1px solid var(--border); padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  /* ── RIPPLE ── */
+  .ripple {
+    position: absolute; border-radius: 50%;
+    background: rgba(201,168,76,0.3);
+    transform: scale(0);
+    animation: ripple-anim 0.6s linear;
+    pointer-events: none;
+  }
+  @keyframes ripple-anim {
+    to { transform: scale(4); opacity: 0; }
+  }
+
+  /* ── TOAST UPGRADE ── */
+  .toast {
+    position: fixed; bottom: 40px; right: 40px;
+    background: var(--surface);
+    border: 1px solid var(--gold);
+    color: var(--cream);
+    padding: 16px 28px;
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    z-index: 1500;
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    display: flex; align-items: center; gap: 12px;
+    min-width: 280px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon { color: var(--gold); font-size: 1rem; }
+
+  /* ── FORM VALIDATION ── */
+  .form-input.error, .form-textarea.error { border-color: #e05555 !important; }
+  .form-input.success, .form-textarea.success { border-color: #55c77a !important; }
+  .field-error { font-size: 0.6rem; color: #e05555; letter-spacing: 0.1em; margin-top: 5px; display: none; }
+  .field-error.show { display: block; }
+  .send-btn-inner { display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .send-spinner { display: none; width: 14px; height: 14px; border: 2px solid var(--ink); border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  .send-spinner.show { display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- CART BUTTON -->
+<button class="cart-btn" id="cartBtn" onclick="toggleCart()">
+  🛍 Cart <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <div class="cart-title">Your Cart</div>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">🧴</div>
+      <div>Your cart is empty</div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-val" id="cartTotal">$0</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="checkout()">
+      <span class="send-btn-inner">
+        <span id="checkoutText">Proceed to Checkout</span>
+        <span class="send-spinner" id="checkoutSpinner"></span>
+      </span>
+    </button>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="productModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-visual" id="modalVisual"></div>
+    <div class="modal-info">
+      <div class="modal-type" id="modalType"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-notes-label">Fragrance Notes</div>
+      <div class="modal-notes-list" id="modalNotes"></div>
+      <div class="modal-size-label">Select Size</div>
+      <div class="modal-sizes" id="modalSizes"></div>
+      <div class="modal-actions">
+        <button class="modal-add-btn" id="modalAddBtn" onclick="addFromModal()">Add to Cart</button>
+        <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlist()" title="Add to Wishlist">♡</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Acqua Di Gio</a>
+  <ul class="nav-links">
+    <li><a href="#perfumes">Collection</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Atelier</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 1992 — Giorgio Armani</div>
+    <h1 class="hero-title">The Scent of<br/><em>the Sea</em></h1>
+    <p class="hero-subtitle">Where water meets the eternal sky</p>
+    <p class="hero-desc">Born from the memory of a summer on Pantelleria island, Acqua di Giò captures the boundless freedom of wind, water, and Mediterranean light in every breath.</p>
+    <div class="hero-actions">
+      <a href="#perfumes" class="btn-primary">Explore Collection</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><span class="stat-num">30+</span><span class="stat-label">Years of Heritage</span></div>
+    <div class="stat-item reveal" style="transition-delay:0.1s"><span class="stat-num">18</span><span class="stat-label">Iconic Fragrances</span></div>
+    <div class="stat-item reveal" style="transition-delay:0.2s"><span class="stat-num">120+</span><span class="stat-label">Countries Worldwide</span></div>
+    <div class="stat-item reveal" style="transition-delay:0.3s"><span class="stat-num">4M+</span><span class="stat-label">Satisfied Clients</span></div>
+  </div>
+</div>
+
+<!-- PERFUMES -->
+<section id="perfumes">
+  <div class="perfumes-header reveal">
+    <div>
+      <div class="section-tag">Our Collection</div>
+      <h2 class="section-title">Signature<br/><em>Fragrances</em></h2>
+    </div>
+    <a href="#contact" class="btn-ghost">View All →</a>
+  </div>
+  <div class="perfumes-grid">
+
+    <!-- Card 1 -->
+    <div class="perfume-card reveal">
+      <div class="perfume-img-wrap" style="background: linear-gradient(160deg, #0d1830 0%, #1a2a4a 50%, #0f1e3a 100%);">
+        <svg class="bottle-svg" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:180px">
+          <rect x="38" y="10" width="24" height="14" rx="3" fill="rgba(201,168,76,0.4)"/>
+          <rect x="42" y="6" width="16" height="8" rx="2" fill="rgba(201,168,76,0.6)"/>
+          <path d="M28 34 Q20 50 20 80 L20 165 Q20 175 30 175 L70 175 Q80 175 80 165 L80 80 Q80 50 72 34 Z" fill="rgba(30,60,120,0.7)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <path d="M28 34 Q20 50 20 80 L20 120 Q40 130 80 120 L80 80 Q80 50 72 34 Z" fill="rgba(50,90,180,0.25)"/>
+          <ellipse cx="50" cy="130" rx="18" ry="6" fill="rgba(201,168,76,0.08)"/>
+          <text x="50" y="148" text-anchor="middle" font-family="serif" font-size="6" fill="rgba(201,168,76,0.7)" letter-spacing="1">ACQUA DI GIÒ</text>
+          <text x="50" y="158" text-anchor="middle" font-family="serif" font-size="4.5" fill="rgba(201,168,76,0.5)" letter-spacing="0.5">POUR HOMME</text>
+        </svg>
+      </div>
+      <div class="perfume-info">
+        <div class="perfume-name">Acqua di Giò</div>
+        <div class="perfume-type">Pour Homme · Eau de Toilette</div>
+        <div class="perfume-notes">Sea notes · Jasmine · Cedarwood · Musk</div>
+        <div class="perfume-price">$95</div>
+      </div>
+      <div class="perfume-overlay"><a href="#contact">Add to Cart</a></div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="perfume-card reveal" style="transition-delay:0.1s">
+      <div class="perfume-img-wrap" style="background: linear-gradient(160deg, #1a1020 0%, #2d1a3a 50%, #150d20 100%);">
+        <svg class="bottle-svg" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:180px">
+          <rect x="38" y="10" width="24" height="14" rx="3" fill="rgba(201,168,76,0.4)"/>
+          <rect x="42" y="6" width="16" height="8" rx="2" fill="rgba(201,168,76,0.6)"/>
+          <path d="M28 34 Q20 50 20 80 L20 165 Q20 175 30 175 L70 175 Q80 175 80 165 L80 80 Q80 50 72 34 Z" fill="rgba(60,20,90,0.7)" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+          <path d="M28 34 Q20 50 20 80 L20 100 Q40 112 80 100 L80 80 Q80 50 72 34 Z" fill="rgba(120,40,180,0.2)"/>
+          <text x="50" y="148" text-anchor="middle" font-family="serif" font-size="6" fill="rgba(201,168,76,0.7)" letter-spacing="1">ACQUA DI GIÒ</text>
+          <text x="50" y="158" text-anchor="middle" font-family="serif" font-size="4.5" fill="rgba(201,168,76,0.5)" letter-spacing="0.5">ABSOLU</text>
+        </svg>
+      </div>
+      <div class="perfume-info">
+        <div class="perfume-name">Acqua di Giò Absolu</div>
+        <div class="perfume-type">Pour Homme · Eau de Parfum</div>
+        <div class="perfume-notes">Labdanum · Marine · Patchouli · Rosemary</div>
+        <div class="perfume-price">$135</div>
+      </div>
+      <div class="perfume-overlay"><a href="#contact">Add to Cart</a></div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="perfume-card reveal" style="transition-delay:0.2s">
+      <div class="perfume-img-wrap" style="background: linear-gradient(160deg, #0d1e1a 0%, #1a3830 50%, #0f2018 100%);">
+        <svg class="bottle-svg" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:180px">
+          <rect x="38" y="10" width="24" height="14" rx="3" fill="rgba(201,168,76,0.4)"/>
+          <rect x="42" y="6" width="16" height="8" rx="2" fill="rgba(201,168,76,0.6)"/>
+          <path d="M28 34 Q20 50 20 80 L20 165 Q20 175 30 175 L70 175 Q80 175 80 165 L80 80 Q80 50 72 34 Z" fill="rgba(20,70,50,0.7)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+          <path d="M28 34 Q20 50 20 80 L20 110 Q40 125 80 110 L80 80 Q80 50 72 34 Z" fill="rgba(30,130,80,0.2)"/>
+          <text x="50" y="148" text-anchor="middle" font-family="serif" font-size="6" fill="rgba(201,168,76,0.7)" letter-spacing="1">ACQUA DI GIÒ</text>
+          <text x="50" y="158" text-anchor="middle" font-family="serif" font-size="4.5" fill="rgba(201,168,76,0.5)" letter-spacing="0.5">PROFONDO</text>
+        </svg>
+      </div>
+      <div class="perfume-info">
+        <div class="perfume-name">Acqua di Giò Profondo</div>
+        <div class="perfume-type">Pour Homme · Eau de Parfum</div>
+        <div class="perfume-notes">Aquatic notes · Green Mandarin · Mastic</div>
+        <div class="perfume-price">$120</div>
+      </div>
+      <div class="perfume-overlay"><a href="#contact">Add to Cart</a></div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="perfume-card reveal" style="transition-delay:0.3s">
+      <div class="perfume-img-wrap" style="background: linear-gradient(160deg, #1a1510 0%, #2e2415 50%, #201a0d 100%);">
+        <svg class="bottle-svg" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:180px">
+          <rect x="38" y="10" width="24" height="14" rx="3" fill="rgba(201,168,76,0.4)"/>
+          <rect x="42" y="6" width="16" height="8" rx="2" fill="rgba(201,168,76,0.6)"/>
+          <path d="M28 34 Q20 50 20 80 L20 165 Q20 175 30 175 L70 175 Q80 175 80 165 L80 80 Q80 50 72 34 Z" fill="rgba(80,55,20,0.7)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+          <path d="M28 34 Q20 50 20 80 L20 100 Q40 115 80 100 L80 80 Q80 50 72 34 Z" fill="rgba(201,168,76,0.15)"/>
+          <text x="50" y="148" text-anchor="middle" font-family="serif" font-size="6" fill="rgba(201,168,76,0.7)" letter-spacing="1">ACQUA DI GIÒ</text>
+          <text x="50" y="158" text-anchor="middle" font-family="serif" font-size="4.5" fill="rgba(201,168,76,0.5)" letter-spacing="0.5">PROFUMO</text>
+        </svg>
+      </div>
+      <div class="perfume-info">
+        <div class="perfume-name">Acqua di Giò Profumo</div>
+        <div class="perfume-type">Pour Homme · Parfum</div>
+        <div class="perfume-notes">Incense · Geranium · Sea notes · Ambrox</div>
+        <div class="perfume-price">$160</div>
+      </div>
+      <div class="perfume-overlay"><a href="#contact">Add to Cart</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our <em>Services</em></h2>
+    <p class="section-desc">From personalized scent consultation to bespoke gifting, we offer a curated suite of services designed for the discerning fragrance connoisseur.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon"><div class="service-icon-glyph">🧴</div></div>
+      <div class="service-name">Scent Consultation</div>
+      <p class="service-desc">One-on-one sessions with our master perfumers to identify your unique olfactory profile and find your signature scent from our collection.</p>
+      <a href="#contact" class="service-link">Book a session →</a>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.1s">
+      <div class="service-icon"><div class="service-icon-glyph">🎁</div></div>
+      <div class="service-name">Bespoke Gifting</div>
+      <p class="service-desc">Curated gift sets with personalized engraving, custom packaging, and handwritten notes — crafted for the extraordinary moments in life.</p>
+      <a href="#contact" class="service-link">Explore gifting →</a>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.2s">
+      <div class="service-icon"><div class="service-icon-glyph">✉️</div></div>
+      <div class="service-name">Fragrance Subscription</div>
+      <p class="service-desc">Receive a curated selection of our finest fragrances monthly. Discover new notes, limited editions, and seasonal releases before anyone else.</p>
+      <a href="#pricing" class="service-link">View plans →</a>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.3s">
+      <div class="service-icon"><div class="service-icon-glyph">🏛️</div></div>
+      <div class="service-name">Private Atelier Events</div>
+      <p class="service-desc">Exclusive behind-the-scenes experiences at our fragrance ateliers. Perfect for corporate events, celebrations, and intimate gatherings.</p>
+      <a href="#contact" class="service-link">Enquire now →</a>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.1s">
+      <div class="service-icon"><div class="service-icon-glyph">🚚</div></div>
+      <div class="service-name">Worldwide Delivery</div>
+      <p class="service-desc">Premium white-glove delivery to over 120 countries. Every order arrives in signature gift packaging with complimentary fragrance samples.</p>
+      <a href="#contact" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.2s">
+      <div class="service-icon"><div class="service-icon-glyph">♻️</div></div>
+      <div class="service-name">Refill Programme</div>
+      <p class="service-desc">Our sustainable refill service allows you to replenish your favorite bottle at a boutique, reducing waste while maintaining our commitment to the planet.</p>
+      <a href="#contact" class="service-link">Find a boutique →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-bg-rect"></div>
+    <div class="about-main-block">
+      <div class="about-glyph">A</div>
+    </div>
+    <div class="about-badge">
+      <span class="about-badge-num">1992</span>
+      <span class="about-badge-text">Founded</span>
+    </div>
+  </div>
+  <div class="about-content reveal" style="transition-delay:0.2s">
+    <div class="section-tag">Our Heritage</div>
+    <h2 class="section-title">A Story Born<br/><em>from the Sea</em></h2>
+    <p class="section-desc">Acqua di Giò was born from Giorgio Armani's personal journey to Pantelleria, a volcanic island between Sicily and Tunisia. Captivated by the island's raw beauty — the black lava rock meeting crystalline sea — he sought to capture that freedom in a bottle.</p>
+    <p class="section-desc" style="margin-top:18px;">Thirty years on, Acqua di Giò remains one of the world's most beloved fragrances — a testament to the enduring power of nature's simplicity and the artistry of Italian perfumery.</p>
+    <ul class="about-list">
+      <li>Crafted in Grasse, the perfume capital of the world</li>
+      <li>Certified sustainable sourcing for all natural ingredients</li>
+      <li>Awarded "Fragrance of the Decade" — Fragrance Foundation</li>
+      <li>Distributed in over 120 countries across 6 continents</li>
+      <li>Refillable bottles program since 2020 — reducing waste by 40%</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="reveal">
+    <div class="section-tag">The Atelier</div>
+    <h2 class="section-title">Meet Our <em>Creators</em></h2>
+    <p class="section-desc">The visionaries behind every bottle — master perfumers, creative directors, and artisans who shape the world of Acqua di Giò.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-photo">
+        <div class="team-photo-inner">◈</div>
+        <div class="team-photo-accent"></div>
+      </div>
+      <div class="team-name">Giorgio Armani</div>
+      <div class="team-role">Founder & Creative Director</div>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.1s">
+      <div class="team-photo">
+        <div class="team-photo-inner">◈</div>
+        <div class="team-photo-accent"></div>
+      </div>
+      <div class="team-name">Alberto Morillas</div>
+      <div class="team-role">Master Perfumer</div>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.2s">
+      <div class="team-photo">
+        <div class="team-photo-inner">◈</div>
+        <div class="team-photo-accent"></div>
+      </div>
+      <div class="team-name">Anne Flipo</div>
+      <div class="team-role">Lead Nose — Femme</div>
+    </div>
+    <div class="team-card reveal" style="transition-delay:0.3s">
+      <div class="team-photo">
+        <div class="team-photo-inner">◈</div>
+        <div class="team-photo-accent"></div>
+      </div>
+      <div class="team-name">Fabrice Pellegrin</div>
+      <div class="team-role">Senior Perfumer</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="reveal">
+    <div class="section-tag">Client Voices</div>
+    <h2 class="section-title">What They<br/><em>Say About Us</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Acqua di Giò is the only fragrance I've worn for the past decade. It's timeless, effortless, and always earns compliments. Nothing else comes close.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">J</div>
+        <div>
+          <div class="testimonial-name">James Whitmore</div>
+          <div class="testimonial-loc">London, UK</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.1s">
+      <div class="testimonial-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">The Profumo is a masterpiece. Deep, meditative, and distinctly masculine. Every time I wear it, I'm transported to the edge of the Mediterranean.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">M</div>
+        <div>
+          <div class="testimonial-name">Marco Ricci</div>
+          <div class="testimonial-loc">Milan, Italy</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.2s">
+      <div class="testimonial-quote">"</div>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">The scent consultation service was extraordinary. They found my perfect scent in under an hour. I've been wearing Absolu ever since.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">S</div>
+        <div>
+          <div class="testimonial-name">Sophia Laurent</div>
+          <div class="testimonial-loc">Paris, France</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="reveal">
+    <div class="section-tag">Membership</div>
+    <h2 class="section-title">Choose Your<br/><em>Experience</em></h2>
+    <p class="section-desc">Our fragrance membership programs are designed to bring the world of Acqua di Giò to your door, every month.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pricing-tier">Essentials</div>
+      <div class="pricing-price"><sup>$</sup>29</div>
+      <div class="pricing-period">per month, billed annually</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>1 Fragrance (10ml) monthly</li>
+        <li>Exclusive member newsletter</li>
+        <li>10% off all boutique purchases</li>
+        <li>Access to seasonal releases</li>
+        <li class="muted">Personal scent consultation</li>
+        <li class="muted">Private atelier access</li>
+        <li class="muted">Custom gifting service</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="display:block;text-align:center">Get Started</a>
+    </div>
+    <div class="pricing-card featured reveal" style="transition-delay:0.1s">
+      <div class="pricing-featured-tag">Most Popular</div>
+      <div class="pricing-tier">Connoisseur</div>
+      <div class="pricing-price"><sup>$</sup>69</div>
+      <div class="pricing-period">per month, billed annually</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>3 Fragrances (10ml each) monthly</li>
+        <li>Exclusive member newsletter</li>
+        <li>20% off all boutique purchases</li>
+        <li>Early access to new launches</li>
+        <li>Annual scent consultation</li>
+        <li>Priority global shipping</li>
+        <li class="muted">Private atelier access</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="display:block;text-align:center">Get Started</a>
+    </div>
+    <div class="pricing-card reveal" style="transition-delay:0.2s">
+      <div class="pricing-tier">Maison</div>
+      <div class="pricing-price"><sup>$</sup>149</div>
+      <div class="pricing-period">per month, billed annually</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Full-size fragrance monthly</li>
+        <li>Exclusive member newsletter</li>
+        <li>30% off all boutique purchases</li>
+        <li>First access to all launches</li>
+        <li>Quarterly scent consultations</li>
+        <li>Complimentary white-glove delivery</li>
+        <li>Private atelier event invitations</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="display:block;text-align:center">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info reveal">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">We'd Love to<br/><em>Hear from You</em></h2>
+    <p class="section-desc">Whether you have a question about our fragrances, wish to book a consultation, or explore a partnership — our team is here for you.</p>
+    <div class="contact-detail">
+      <div class="contact-item">
+        <div class="contact-item-icon">✉</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">hello@acquadigio.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">☎</div>
+        <div>
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-value">+1 (800) 272-2822</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">⌖</div>
+        <div>
+          <div class="contact-item-label">Flagship Boutique</div>
+          <div class="contact-item-value">Via Borgonuovo 11, Milan, Italy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal" style="transition-delay:0.2s">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-input" placeholder="Alessandro"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-input" placeholder="Ricci"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-input" placeholder="you@email.com"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Subject</label>
+      <select class="form-select">
+        <option>Fragrance Enquiry</option>
+        <option>Scent Consultation</option>
+        <option>Bespoke Gifting</option>
+        <option>Membership</option>
+        <option>Press & Partnerships</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Message</label>
+      <textarea class="form-textarea" placeholder="Tell us how we can help..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="sendMessage()" style="border:none;width:100%;padding:16px;font-size:0.72rem;">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Acqua Di Gio</div>
+      <p class="footer-brand-desc">A fragrance born from the sea, sky, and earth of the Mediterranean. Thirty years of heritage, endlessly renewed.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">FB</a>
+        <a href="#" class="social-link">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collection</div>
+      <ul class="footer-links">
+        <li><a href="#perfumes">Acqua di Giò</a></li>
+        <li><a href="#perfumes">Absolu</a></li>
+        <li><a href="#perfumes">Profondo</a></li>
+        <li><a href="#perfumes">Profumo</a></li>
+        <li><a href="#perfumes">Limited Editions</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Consultation</a></li>
+        <li><a href="#services">Gifting</a></li>
+        <li><a href="#services">Subscription</a></li>
+        <li><a href="#services">Atelier Events</a></li>
+        <li><a href="#services">Refill Programme</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#team">The Atelier</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#pricing">Membership</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2024 Acqua Di Gio. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">Message sent — we'll be in touch shortly.</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .perfume-card, .service-card, .team-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '18px';
+      cursor.style.height = '18px';
+      ring.style.width = '54px';
+      ring.style.height = '54px';
+      ring.style.opacity = '0.8';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Toast
+  function sendMessage() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(13,13,14,0.96)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.borderBottom = '1px solid rgba(201,168,76,0.12)';
+    } else {
+      nav.style.background = 'linear-gradient(to bottom, rgba(13,13,14,0.95), transparent)';
+      nav.style.backdropFilter = 'blur(2px)';
+      nav.style.borderBottom = 'none';
+    }
+  });
+</script>
+</body>
+</html>
